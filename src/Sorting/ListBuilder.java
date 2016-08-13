@@ -97,4 +97,15 @@ public class ListBuilder {
     }
 
 
+    /**
+     * Returns the size of the Array
+     */
+    public int getSize(){return size;}
+
+    /**
+     * Returns the range of values in the Array
+     */
+    public int getRange(){return range;}
+
+
 }

@@ -8,11 +8,17 @@ public class PrettyPrinter {
     ArrayList<ArrayList> matrix = new ArrayList<>();
 
 
+    /**
+     * Constructor
+     */
     PrettyPrinter(){
         this.matrix = new ArrayList<>();
         setup();
     }
 
+    /**
+     * Sets up the header row for printing
+     */
     private void setup(){
         ArrayList tmp = new ArrayList();
         tmp.add("");

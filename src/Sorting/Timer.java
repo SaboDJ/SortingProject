@@ -3,19 +3,13 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 
 /**
- * Created by Gaming on 8/12/2016.
+ * Class for timing the different sorting algorithms
  */
 public class Timer {
 
-    enum Sorts {QUICK, MERGE, BUCKET, JAVA }
-
-    Timer(PrettyPrinter printer){
-    }
-
+    enum Sorts {MERGE, BUCKET, QUICK, ONLOGN, JAVAARRAY }
 
     /** Get user time in nanoseconds. */
     public static long getUserTime( ) {
@@ -31,35 +25,46 @@ public class Timer {
         return Double.valueOf((end - start) )/ 1000000000;
     }
 
-    public static void timeMe(ListBuilder mainList, String text, PrettyPrinter printer, int range){
-        int[] list = mainList.getList();
+    public static void timeMe(ListBuilder mainList, String text, PrettyPrinter printer){
+        int[] list;
         Long start, end;
 
         // Setup the output to add to the pretty printer
         ArrayList results = new ArrayList();
         results.add(text);
-        results.add(list.length);
-        results.add(range);
+        results.add(mainList.getSize());
+        results.add(mainList.getRange());
 
-        // QuickSort Test
+        // Merge Sort
+        list = mainList.getList();
         start = getUserTime();
-        // QuickSort Call goes here
+        MergeSort.mergeSort(list);
         end = getUserTime();
         results.add( getDiff(start, end));
 
-        // Merge Sort Test
-        start = getUserTime();
-        // Merge Sort Call goes here
-        end = getUserTime();
-        results.add( getDiff(start, end));
-
-        // Bucket Sort Test
+        // Bucket Sort
+        list = mainList.getList();
         start = getUserTime();
         // Bucket Sort Call goes here
         end = getUserTime();
         results.add( getDiff(start, end));
 
-        // Java Sort Test
+        // QuickSort
+        list = mainList.getList();
+        start = getUserTime();
+        // QuickSort Call goes here
+        end = getUserTime();
+        results.add( getDiff(start, end));
+
+        // O(n log n) Sort
+        list = mainList.getList();
+        start = getUserTime();
+        // Some O(n log n) Sort Call goes here
+        end = getUserTime();
+        results.add( getDiff(start, end));
+
+        // Java Array Sort
+        list = mainList.getList();
         start = getUserTime();
         Arrays.sort(list);
         end = getUserTime();

@@ -1,7 +1,5 @@
 package Sorting;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Gaming on 8/12/2016.
@@ -18,24 +16,24 @@ public class Runner {
     }
 
     public void run(){
-        Timer.timeMe(mainList, "Run 1", printer, range);
-        Timer.timeMe(mainList, "Run 2", printer, range);
-        Timer.timeMe(mainList, "Run 3", printer, range);
+        Timer.timeMe(mainList, "Run 1", printer);
+        Timer.timeMe(mainList, "Run 2", printer);
+        Timer.timeMe(mainList, "Run 3", printer);
 
         mainList.sortList();
-        Timer.timeMe(mainList, "Sorted 1", printer, range);
-        Timer.timeMe(mainList, "Sorted 2", printer, range);
-        Timer.timeMe(mainList, "Sorted 3", printer, range);
+        Timer.timeMe(mainList, "Sorted 1", printer);
+        Timer.timeMe(mainList, "Sorted 2", printer);
+        Timer.timeMe(mainList, "Sorted 3", printer);
 
         mainList.randomizePercentage(10);
-        Timer.timeMe(mainList, "10% Random 1", printer, range);
-        Timer.timeMe(mainList, "10% Random 1", printer, range);
-        Timer.timeMe(mainList, "10% Random 1", printer, range);
+        Timer.timeMe(mainList, "10% Random 1", printer);
+        Timer.timeMe(mainList, "10% Random 1", printer);
+        Timer.timeMe(mainList, "10% Random 1", printer);
 
         mainList.reverse();
-        Timer.timeMe(mainList, "Reversed 1", printer, range);
-        Timer.timeMe(mainList, "Reversed 2", printer, range);
-        Timer.timeMe(mainList, "Reversed 3", printer, range);
+        Timer.timeMe(mainList, "Reversed 1", printer);
+        Timer.timeMe(mainList, "Reversed 2", printer);
+        Timer.timeMe(mainList, "Reversed 3", printer);
 
         System.out.println(printer.toString());
     }
