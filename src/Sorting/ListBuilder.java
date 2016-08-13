@@ -50,12 +50,7 @@ public class ListBuilder {
         randPerc = percent;
 
         // Make sure the list is sorted first
-        if(!sorted) {
-            Arrays.sort(list);
-        }
-        else {
-            sorted = false;
-        }
+        sortList();
 
         Random rand = new Random();
         percent = percent * .01;
@@ -79,6 +74,18 @@ public class ListBuilder {
     }
 
     /**
+     * Reverse sorts the list
+     */
+    public void reverse(){
+        sortList();
+        int[] newList = new int[size];
+        for(int i = 0; i < size; i++){
+            newList[i] = list[size - 1 - i];
+        }
+        list = newList;
+    }
+
+    /**
      * Returns a copy of the array
      */
     public int[] getList(){
@@ -89,17 +96,5 @@ public class ListBuilder {
         return newList;
     }
 
-    /**
-     * Reverse sorts the list
-     */
-    public void reverse(){
-        sortList();
-        int[] newList = new int[size];
-        for(int i = 0; i < size; i++){
-            newList[i] = list[size - 1 - i];
-        }
-        list = newList;
-
-    }
 
 }

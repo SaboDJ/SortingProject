@@ -32,7 +32,8 @@ public class Timer {
     }
 
     public static void timeMe(ListBuilder mainList, String text, PrettyPrinter printer, int range){
-       int[] list = mainList.getList();
+        int[] list = mainList.getList();
+        Long start, end;
 
         // Setup the output to add to the pretty printer
         ArrayList results = new ArrayList();
@@ -40,46 +41,30 @@ public class Timer {
         results.add(list.length);
         results.add(range);
 
+        // QuickSort Test
+        start = getUserTime();
+        // QuickSort Call goes here
+        end = getUserTime();
+        results.add( getDiff(start, end));
 
-        for(Sorts sort : Sorts.values()) {
-            Long start, end;
-         switch(sort){
-             case QUICK:
-                 start = getUserTime();
-       //          System.out.println("Time the QuickSort");
-                 end = getUserTime();
-       //          System.out.println(Sorts.QUICK.toString() + "\t" + getDiff(start, end));
-                 results.add( getDiff(start, end));
-                 break;
+        // Merge Sort Test
+        start = getUserTime();
+        // Merge Sort Call goes here
+        end = getUserTime();
+        results.add( getDiff(start, end));
 
-             case MERGE:
-                 start = getUserTime();
-        //         System.out.println("Time the Merge Sort");
-                 end = getUserTime();
-       //          System.out.println(Sorts.MERGE.toString() + "\t" + getDiff(start, end));
-                 results.add( getDiff(start, end));
-                 break;
+        // Bucket Sort Test
+        start = getUserTime();
+        // Bucket Sort Call goes here
+        end = getUserTime();
+        results.add( getDiff(start, end));
 
-             case BUCKET:
-                 start = getUserTime();
-        //         System.out.println("Time the Bucket Sort");
-                 end = getUserTime();
-       //          System.out.println(Sorts.BUCKET.toString() + "\t" + getDiff(start, end));
-                 results.add( getDiff(start, end));
-                 break;
+        // Java Sort Test
+        start = getUserTime();
+        Arrays.sort(list);
+        end = getUserTime();
+        results.add( getDiff(start, end));
 
-             case JAVA:
-                 start = getUserTime();
-                 Arrays.sort(list);
-                 end = getUserTime();
-     //            System.out.printf("%s\t%.4f\n",Sorts.JAVA.toString(), getDiff(start, end));
-                 results.add( getDiff(start, end));
-                 break;
-
-
-         }
-
-     }
         printer.addRow(results);
     }
 

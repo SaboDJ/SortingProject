@@ -27,7 +27,7 @@ public class Runner {
         Timer.timeMe(mainList, "Sorted 2", printer, range);
         Timer.timeMe(mainList, "Sorted 3", printer, range);
 
-           this.mainList.randomizePercentage(10);
+        mainList.randomizePercentage(10);
         Timer.timeMe(mainList, "10% Random 1", printer, range);
         Timer.timeMe(mainList, "10% Random 1", printer, range);
         Timer.timeMe(mainList, "10% Random 1", printer, range);
