@@ -2,6 +2,7 @@ package Sorting;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -31,12 +32,12 @@ public class Timer {
     }
 
     public static void timeMe(ListBuilder mainList, String text, PrettyPrinter printer, int range){
-        ArrayList<Integer> list = mainList.getList();
+       int[] list = mainList.getList();
 
         // Setup the output to add to the pretty printer
         ArrayList results = new ArrayList();
         results.add(text);
-        results.add(list.size());
+        results.add(list.length);
         results.add(range);
 
 
@@ -69,7 +70,7 @@ public class Timer {
 
              case JAVA:
                  start = getUserTime();
-                 Collections.sort(list);
+                 Arrays.sort(list);
                  end = getUserTime();
      //            System.out.printf("%s\t%.4f\n",Sorts.JAVA.toString(), getDiff(start, end));
                  results.add( getDiff(start, end));

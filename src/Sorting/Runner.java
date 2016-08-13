@@ -23,11 +23,20 @@ public class Runner {
         Timer.timeMe(mainList, "Run 3", printer, range);
 
         mainList.sortList();
-
-     //   this.mainList.randomizePercentage(10);
         Timer.timeMe(mainList, "Sorted 1", printer, range);
         Timer.timeMe(mainList, "Sorted 2", printer, range);
         Timer.timeMe(mainList, "Sorted 3", printer, range);
+
+           this.mainList.randomizePercentage(10);
+        Timer.timeMe(mainList, "10% Random 1", printer, range);
+        Timer.timeMe(mainList, "10% Random 1", printer, range);
+        Timer.timeMe(mainList, "10% Random 1", printer, range);
+
+        mainList.reverse();
+        Timer.timeMe(mainList, "Reversed 1", printer, range);
+        Timer.timeMe(mainList, "Reversed 2", printer, range);
+        Timer.timeMe(mainList, "Reversed 3", printer, range);
+
         System.out.println(printer.toString());
     }
 

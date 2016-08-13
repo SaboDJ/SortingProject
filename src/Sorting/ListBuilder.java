@@ -1,13 +1,12 @@
 package Sorting;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
  * Manages the list to sort.
  */
 public class ListBuilder {
-    ArrayList<Integer> list;
+    int[] list;
     int size;
     int range;
     boolean sorted;
@@ -24,7 +23,7 @@ public class ListBuilder {
         this.sorted = false;
         this.randPerc = 0;
 
-        list = new ArrayList();
+        list = new int[size];
         buildList();
 
     }
@@ -35,7 +34,7 @@ public class ListBuilder {
     private void buildList(){
         Random rand = new Random();
         for(int i = 0; i < size; i++){
-            list.add(rand.nextInt(range));
+            list[i] = rand.nextInt(range);
         }
     }
 
@@ -52,7 +51,7 @@ public class ListBuilder {
 
         // Make sure the list is sorted first
         if(!sorted) {
-            Collections.sort(list);
+            Arrays.sort(list);
         }
         else {
             sorted = false;
@@ -63,13 +62,7 @@ public class ListBuilder {
 
         // Replace a certain percentage of the list with new random values
         for(int i = 0; i < percent * size; i++){
-            // the element we are replacing
-            int elem = rand.nextInt(size);
-            // remove the element at that position
-            list.remove(elem);
-            // Replace an element in the list with a random one
-            list.add(elem, rand.nextInt(range));
-
+            list[rand.nextInt(size)] = rand.nextInt(range);
         }
     }
 
@@ -82,17 +75,31 @@ public class ListBuilder {
             return;
         }
         sorted = true;
-        Collections.sort(list);
+        Arrays.sort(list);
     }
 
     /**
      * Returns a copy of the array
      */
-    public ArrayList<Integer> getList(){
-        ArrayList<Integer> newList = new ArrayList<>();
-        newList.addAll(list);
+    public int[] getList(){
+        int[] newList = new int[size];
+        for(int i = 0; i < size; i++){
+            newList[i] = list[i];
+        }
         return newList;
     }
 
+    /**
+     * Reverse sorts the list
+     */
+    public void reverse(){
+        sortList();
+        int[] newList = new int[size];
+        for(int i = 0; i < size; i++){
+            newList[i] = list[size - 1 - i];
+        }
+        list = newList;
+
+    }
 
 }
