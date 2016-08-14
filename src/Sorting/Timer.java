@@ -11,23 +11,31 @@ public class Timer {
 
     enum Sorts {MERGE, BUCKET, QUICK, ONLOGN, JAVAARRAY }
 
+    final ListBuilder mainList;
+
+    /**
+     * @param mainList the list to use
+     */
+    Timer(ListBuilder mainList){
+        this.mainList = mainList;
+    }
+
     /** Get user time in nanoseconds. */
-    public static long getUserTime( ) {
+    public  long getUserTime( ) {
         ThreadMXBean bean = ManagementFactory.getThreadMXBean( );
         return bean.isCurrentThreadCpuTimeSupported( ) ?
                 bean.getCurrentThreadUserTime( ) : 0L;
+      //  return  System.nanoTime();
     }
 
     /**
      * Returns the number of seconds run
      */
-    private static Double getDiff(Long start, Long end){
+    private  Double getDiff(Long start, Long end){
         return Double.valueOf((end - start) )/ 1000000000;
     }
 
-    public static void timeMe(ListBuilder mainList, String text, PrettyPrinter printer){
-        int[] list;
-        Long start, end;
+    public  void timeMe(String text, PrettyPrinter printer){
 
         // Setup the output to add to the pretty printer
         ArrayList results = new ArrayList();
@@ -36,39 +44,40 @@ public class Timer {
         results.add(mainList.getRange());
 
         // Merge Sort
-        list = mainList.getList();
-        start = getUserTime();
-        MergeSort.mergeSort(list);
-        end = getUserTime();
-        results.add( getDiff(start, end));
+        int[] listM = mainList.getList();
+        Long startM = getUserTime();
+        MergeSort.mergeSort(listM);
+        Long endM = getUserTime();
+        results.add( getDiff(startM, endM));
 
         // Bucket Sort
-        list = mainList.getList();
-        start = getUserTime();
+        int[] listB = mainList.getList();
+        Long startB = getUserTime();
         // Bucket Sort Call goes here
-        end = getUserTime();
-        results.add( getDiff(start, end));
+        Long endB = getUserTime();
+        results.add( getDiff(startB, endB));
 
         // QuickSort
-        list = mainList.getList();
-        start = getUserTime();
+        int[] listQ = mainList.getList();
+        Long startQ = getUserTime();
         // QuickSort Call goes here
-        end = getUserTime();
-        results.add( getDiff(start, end));
+        Long endQ = getUserTime();
+        results.add( getDiff(startQ, endQ));
 
         // O(n log n) Sort
-        list = mainList.getList();
-        start = getUserTime();
+        int[] listO = mainList.getList();
+        Long startO = getUserTime();
         // Some O(n log n) Sort Call goes here
-        end = getUserTime();
-        results.add( getDiff(start, end));
+        Long endO = getUserTime();
+        results.add( getDiff(startO, endO));
 
         // Java Array Sort
-        list = mainList.getList();
-        start = getUserTime();
-        Arrays.sort(list);
-        end = getUserTime();
-        results.add( getDiff(start, end));
+        int[] listJ = mainList.getList();
+        Long startJ = getUserTime();
+        Arrays.sort(listJ);
+        Long endJ = getUserTime();
+        results.add( getDiff(startJ, endJ));
+
 
         printer.addRow(results);
     }

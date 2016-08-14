@@ -21,7 +21,7 @@ public class PrettyPrinter {
      */
     private void setup(){
         ArrayList tmp = new ArrayList();
-        tmp.add("");
+        tmp.add("            ");
         tmp.add("Size");
         tmp.add("Range");
         for(Timer.Sorts sort: Timer.Sorts.values()){
@@ -32,6 +32,11 @@ public class PrettyPrinter {
 
     public void addRow(ArrayList<Object> row){
         matrix.add(row);
+        for(Object item : row){
+            System.out.print(item + "\t");
+        }
+        System.out.print("\n");
+
     }
 
     public String toString(){

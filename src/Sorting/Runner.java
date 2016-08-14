@@ -2,40 +2,73 @@ package Sorting;
 
 
 /**
- * Created by Gaming on 8/12/2016.
+ * Main Class to run the sorting algorithms
+ * Need to run with '-Xint'  to make sure we don't use optimizations
  */
 public class Runner {
-    PrettyPrinter printer;
-    ListBuilder mainList;
-    int size = 10000000;
-    int range = 10000000;
+    PrettyPrinter printer = new PrettyPrinter();
 
-    public Runner(){
-        this.mainList = new ListBuilder(size, range);
-        this.printer = new PrettyPrinter();
+
+    /**
+     * Main method that allows us to run multiple tests in a single execution
+     * The sizes[] and ranges[] arrays must have the same number of elements
+     */
+    public  void run(){
+        int[] sizes = {1000000,5000000,10000000};
+        int[] ranges = {1000000,5000000,10000000};
+
+        if(sizes.length != ranges.length){
+            System.err.println("Sizes and Ranges must contain the same number of elements");
+            System.exit(1);
+        }
+        for(int i = 0; i < sizes.length; i++){
+            runTests(sizes[i], ranges[i]);
+        }
+
+        // Print out the results
+       // System.out.println(printer.toString());
+        System.out.println("Completed Sorting Tests");
     }
 
-    public void run(){
-        Timer.timeMe(mainList, "Run 1", printer);
-        Timer.timeMe(mainList, "Run 2", printer);
-        Timer.timeMe(mainList, "Run 3", printer);
+    /**
+     * Runs all of the test for the given size and range
+     */
+    private void runTests(int size, int range){
+        ListBuilder mainList1 = new ListBuilder(size, range);
+        ListBuilder mainList2 = new ListBuilder(size, range);
+        ListBuilder mainList3 = new ListBuilder(size, range);
 
-        mainList.sortList();
-        Timer.timeMe(mainList, "Sorted 1", printer);
-        Timer.timeMe(mainList, "Sorted 2", printer);
-        Timer.timeMe(mainList, "Sorted 3", printer);
+        new Timer(mainList1).timeMe( "Random Run 1", printer);
+        new Timer(mainList1).timeMe( "Random Run 2", printer);
+        new Timer(mainList1).timeMe( "Random Run 3", printer);
 
-        mainList.randomizePercentage(10);
-        Timer.timeMe(mainList, "10% Random 1", printer);
-        Timer.timeMe(mainList, "10% Random 1", printer);
-        Timer.timeMe(mainList, "10% Random 1", printer);
+        mainList1.randomizePercentage(10);
+        mainList2.randomizePercentage(10);
+        mainList3.randomizePercentage(10);
+        new Timer(mainList1).timeMe( "10% Random 1", printer);
+        new Timer(mainList1).timeMe( "10% Random 2", printer);
+        new Timer(mainList1).timeMe( "10% Random 3", printer);
 
-        mainList.reverse();
-        Timer.timeMe(mainList, "Reversed 1", printer);
-        Timer.timeMe(mainList, "Reversed 2", printer);
-        Timer.timeMe(mainList, "Reversed 3", printer);
+        mainList1.randomizePercentage(50);
+        mainList2.randomizePercentage(50);
+        mainList3.randomizePercentage(50);
+        new Timer(mainList1).timeMe( "50% Random 1", printer);
+        new Timer(mainList1).timeMe( "50% Random 2", printer);
+        new Timer(mainList1).timeMe( "50% Random 3", printer);
 
-        System.out.println(printer.toString());
+        mainList1.sortList();
+        mainList2.sortList();
+        mainList3.sortList();
+        new Timer(mainList1).timeMe( "Sorted 1    ", printer);
+        new Timer(mainList1).timeMe( "Sorted 2    ", printer);
+        new Timer(mainList1).timeMe( "Sorted 3    ", printer);
+
+        mainList1.reverse();
+        mainList2.reverse();
+        mainList3.reverse();
+        new Timer(mainList1).timeMe( "Reversed 1  ", printer);
+        new Timer(mainList1).timeMe( "Reversed 2  ", printer);
+        new Timer(mainList1).timeMe( "Reversed 3  ", printer);
     }
 
     public static void main(String[] args) {
