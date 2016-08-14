@@ -14,8 +14,8 @@ public class Runner {
      * The sizes[] and ranges[] arrays must have the same number of elements
      */
     public  void run(){
-        int[] sizes = {1000000,5000000,10000000};
-        int[] ranges = {1000000,5000000,10000000};
+        int[] sizes = {1000000, 1000000,5000000, 5000000, 10000000, 10000000};
+        int[] ranges = {2, 1000000, 2, 5000000, 2, 10000000};
 
         if(sizes.length != ranges.length){
             System.err.println("Sizes and Ranges must contain the same number of elements");
