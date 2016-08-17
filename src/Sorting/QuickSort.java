@@ -3,33 +3,53 @@ package Sorting;
 import java.util.*;
 
 public class QuickSort {
-    public static void swap (int A[], int x, int y) {
-        int temp = A[x];
-        A[x] = A[y];
-        A[y] = temp;
+    public static void main(String[] args) {
+        int[] x = { 9, 2, 4, 7, 3, 7, 10 };
+        System.out.println(Arrays.toString(x));
+
+        int low = 0;
+        int high = x.length - 1;
+
+        quickSort(x, low, high);
+        System.out.println(Arrays.toString(x));
     }
 
-    public static int partition(int A[], int f, int l) {
-        int pivot = A[f];
-        while (f < l) {
-            while (A[f] < pivot) f++;
-            while (A[l] > pivot) l--;
-            swap (A, f, l);
+    public static void quickSort(int[] arr, int low, int high) {
+        if (arr == null || arr.length == 0)
+            return;
+
+        if (low >= high)
+            return;
+
+        // pick the pivot
+        int middle = low + (high - low) / 2;
+        int pivot = arr[middle];
+
+        // make left < pivot and right > pivot
+        int i = low, j = high;
+        while (i <= j) {
+            while (arr[i] < pivot) {
+                i++;
+            }
+
+            while (arr[j] > pivot) {
+                j--;
+            }
+
+            if (i <= j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
         }
-        return f;
-    }
 
-    public static void Quicksort(int A[], int f, int l) {
-        if (f >= l) return;
-        int pivotIndex = partition(A, f, l);
-        Quicksort(A, f, pivotIndex);
-        Quicksort(A, pivotIndex+1, l);
-    }
+        // recursively sort two sub parts
+        if (low < j)
+            quickSort(arr, low, j);
 
-    public static void main(String argv[]) {
-        int []numbers={55,2,93,1,23,10,66,12,7,54,3};
-        System.out.println(Arrays.toString(numbers));
-        Quicksort(numbers, 0, numbers.length-1);
-        System.out.println(Arrays.toString(numbers));
+        if (high > i)
+            quickSort(arr, i, high);
     }
 }

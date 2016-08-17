@@ -65,8 +65,7 @@ public class Timer {
         // QuickSort
         int[] listQ = mainList.getList();
         Long startQ = getUserTime();
-        // QuickSort is having issues
-        // QuickSort.Quicksort(listQ, 0, listQ.length-1);
+        QuickSort.quickSort(listQ, 0, listQ.length-1);
         Long endQ = getUserTime();
         results.add( getDiff(startQ, endQ));
 
