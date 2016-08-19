@@ -43,7 +43,7 @@ public class PrettyPrinter {
      * All of the tests should be run in sets of 3, this will print out the averages of the rows
      * May update this to take the median instead
      */
-    public void printAverages(){
+    public void printMedians(){
         ArrayList<ArrayList> avewrages = new ArrayList<>();
 
         // Add the title row
@@ -55,8 +55,12 @@ public class PrettyPrinter {
             ArrayList row = new ArrayList();
             // the tile of the sort test
             row.add(matrix.get(i).get(0));
+            // the size of the array
+            row.add(matrix.get(i).get(1));
+            // the range of the array
+            row.add(matrix.get(i).get(2));
             // get averages from the next three rows
-            for(int j = 1; j < matrix.get(i).size(); j++){
+            for(int j = 3; j < matrix.get(i).size(); j++){
                 // The three rows we are averaging
                 double a = (double) matrix.get(i).get(j);
                 double b = (double) matrix.get(i+1).get(j);
@@ -73,7 +77,14 @@ public class PrettyPrinter {
             }
             // add the row
             avewrages.add(row);
+        }
 
+        // Print it all out
+        for(ArrayList row : avewrages){
+            for(Object item : row){
+                System.out.print(item + "\t");
+            }
+            System.out.print("\n");
         }
     }
 

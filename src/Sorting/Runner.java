@@ -27,9 +27,11 @@ public class Runner {
             runTests(sizes[i], ranges[i]);
         }
 
-        // Print out the results
-       // System.out.println(printer.toString());
-        System.out.println("Completed Sorting Tests");
+        System.out.println("Completed Sorting Tests, calculating medians");
+        // Print out all of the medians
+        printer.printMedians();
+        System.out.println("****Program Completed****");
+
     }
 
     /**
@@ -71,6 +73,7 @@ public class Runner {
         new Timer(mainList1).timeMe( "Reversed 1  ", printer);
         new Timer(mainList1).timeMe( "Reversed 2  ", printer);
         new Timer(mainList1).timeMe( "Reversed 3  ", printer);
+
     }
 
     public static void main(String[] args) {
