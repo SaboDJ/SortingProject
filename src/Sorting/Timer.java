@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
  */
 public class Timer {
 
-    enum Sorts {MERGE, BUCKET, QUICK, ONLOGN, JAVAARRAY }
+    enum Sorts {MERGE, BUCKET, QUICK, HEAP, JAVAARRAY }
 
     final ListBuilder mainList;
 
@@ -56,25 +56,26 @@ public class Timer {
 
         // Bucket Sort
         int[] listB = mainList.getList();
-        int max  = BucketSort.maxValue(listB);
+       // int max  = BucketSort.maxValue(listB);
         Long startB = getUserTime();
-        BucketSort.sort(listB, max);
+        BucketSort.sort(listB, 5);
         Long endB = getUserTime();
         results.add( getDiff(startB, endB));
 
         // QuickSort
         int[] listQ = mainList.getList();
         Long startQ = getUserTime();
+        // QuickSort is having issues
         QuickSort.quickSort(listQ, 0, listQ.length-1);
         Long endQ = getUserTime();
         results.add( getDiff(startQ, endQ));
 
-        // O(n log n) Sort
-        int[] listO = mainList.getList();
-        Long startO = getUserTime();
-        // Some O(n log n) Sort Call goes here
-        Long endO = getUserTime();
-        results.add( getDiff(startO, endO));
+        //Heap Sort
+        int[] listH = mainList.getList();
+        Long startH = getUserTime();
+        HeapSort.sort(listH);
+        Long endH = getUserTime();
+        results.add( getDiff(startH, endH));
 
         // Java Array Sort
         int[] listJ = mainList.getList();
